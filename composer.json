@@ -18,7 +18,10 @@
         "laravel": {
             "providers": [
                 "Wizard85\\ChatGPTAssist\\Providers\\ChatGPTProvider"
-            ]
+            ],
+            "branch-alias": {
+                "dev-master": "main"
+            }
         }
     },
     "require": {
