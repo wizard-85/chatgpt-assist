@@ -1,4 +1,5 @@
 {
+    "version": "1.0.0",
     "name": "wizard85/chatgpt-assist",
     "description": "AI assist for CRUD",
     "type": "library",
