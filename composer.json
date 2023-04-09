@@ -1,4 +1,5 @@
 {
+    "version": "1.0.0",
     "name": "wizard85/chatgpt-assist",
     "description": "AI assist for CRUD",
     "type": "library",
@@ -18,10 +19,6 @@
             "providers": [
                 "Wizard85\\ChatGPTAssist\\Providers\\ChatGPTProvider"
             ]
-        },
-        "branch-alias": {
-            "dev-main": "1.0-dev",
-            "dev-master": "1.0-dev"
         }
     },
     "require": {
