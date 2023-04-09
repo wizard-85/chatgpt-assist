@@ -1,4 +1,5 @@
 {
+    "version": "1.0.0",
     "name": "wizard85/chatgpt-assist",
     "description": "AI assist for CRUD",
     "type": "library",
@@ -21,7 +22,7 @@
         },
         "branch-alias": {
             "dev-main": "1.0-dev",
-            "dev-master": "1.0-dev"
+            "stable-master": "1.0-stable"
         }
     },
     "require": {
