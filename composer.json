@@ -1,0 +1,28 @@
+{
+    "name": "wizard85/chatgpt-assist",
+    "description": "AI assist for CRUD",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Wizard85\\ChatGPTAssist\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ivan Burykin",
+            "email": "vanuchi@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wizard85\\ChatGPTAssist\\Providers\\ChatGPTProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "1.0-dev",
+            "dev-master": "1.0-dev"
+        }
+    },
+    "require": {}
+}
