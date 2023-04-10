@@ -28,16 +28,29 @@ class GenerateCrudCommand extends Command
      */
     public function handle()
     {
-
         $service = new ChatGPTService();
         $model = $this->argument('model');
         $description = $this->argument('description');
+
         $this->call('make:model', ['name' =>  $model]);
-        $service->makeMigration($model, $description);
-        $service->makeController($model, $description);
-        $service->makeCreateTemplate($model, $description);
-        $service->makeEditTemplate($model, $description);
-        $service->makeIndexTemplate($model, $description);
+
+
+        $migration = $service->makeMigration($model, $description);
+        $this->line('Migration '.$migration.' created');
+
+        $controller = $service->makeController($model, $description);
+        $this->line('Controller '.$controller.' created');
+
+        $template = $service->makeCreateTemplate($model, $description);
+        $this->line('Template "Create" '.$template.' created');
+
+
+        $template = $service->makeEditTemplate($model, $description);
+        $this->line('Template "Edit" '.$template.' created');
+
+        $template = $service->makeIndexTemplate($model, $description);
+        $this->line('Template "Index" '.$template.' created');
+
 
         $this->warn('Remember: code is not final! Please, update it according your project and namespace!');
 

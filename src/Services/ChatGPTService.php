@@ -54,6 +54,8 @@ class ChatGPTService
         $myfile = fopen(base_path('database/migrations/'.$fileName), "w") or die("Unable to open file!");
         fwrite($myfile, '<?php'.PHP_EOL.$fileData);
         fclose($myfile);
+
+        return base_path('database/migrations/'.$fileName);
     }
 
     final public function makeController(string $model, string $description)
@@ -64,6 +66,8 @@ class ChatGPTService
         $myfile = fopen(base_path('app/Http/Controllers/'.$fileName), "w") or die("Unable to open file!");
         fwrite($myfile, $fileData);
         fclose($myfile);
+
+        return base_path('app/Http/Controllers/'.$fileName);
     }
 
     final public function makeCreateTemplate(string $model, string $description)
@@ -71,12 +75,14 @@ class ChatGPTService
         $requestString = 'Give me Laravel Create Blade template for model '.$model.' with fields '.$description .'.';
         $fileData = $this->makeCall($requestString);
         $fileName = 'create.blade.php';
-        if(!directoryExists(base_path('resources/views/'.Str::lower(Str::plural($model))))){
+        if(!is_dir(base_path('resources/views/'.Str::lower(Str::plural($model))))){
             mkdir(base_path('resources/views/' . Str::lower(Str::plural($model))));
         }
         $myfile = fopen(base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName), "w") or die("Unable to open file!");
         fwrite($myfile, $fileData);
         fclose($myfile);
+
+        return base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName);
     }
 
     final public function makeEditTemplate(string $model, string $description)
@@ -84,12 +90,14 @@ class ChatGPTService
         $requestString = 'Give me Laravel Edit Blade template for model '.$model.' with fields '.$description .'.';
         $fileData = $this->makeCall($requestString);
         $fileName = 'edit.blade.php';
-        if(!directoryExists(base_path('resources/views/'.Str::lower(Str::plural($model))))){
+        if(!is_dir(base_path('resources/views/'.Str::lower(Str::plural($model))))){
             mkdir(base_path('resources/views/' . Str::lower(Str::plural($model))));
         }
         $myfile = fopen(base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName), "w") or die("Unable to open file!");
         fwrite($myfile, $fileData);
         fclose($myfile);
+
+        return base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName);
     }
 
     final public function makeIndexTemplate(string $model, string $description)
@@ -97,12 +105,14 @@ class ChatGPTService
         $requestString = 'Give me Laravel Index Blade template for model '.$model.' with fields '.$description .'.';
         $fileData = $this->makeCall($requestString);
         $fileName = 'index.blade.php';
-        if(!directoryExists(base_path('resources/views/'.Str::lower(Str::plural($model))))){
+        if(!is_dir(base_path('resources/views/'.Str::lower(Str::plural($model))))){
             mkdir(base_path('resources/views/' . Str::lower(Str::plural($model))));
         }
         $myfile = fopen(base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName), "w") or die("Unable to open file!");
         fwrite($myfile, $fileData);
         fclose($myfile);
+
+        return base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName);
     }
 
 
