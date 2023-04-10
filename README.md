@@ -9,6 +9,6 @@
 
 ## Usage
 
-php artisan chat-gpt:make-crud "Model Name" "Model description"
+`php artisan chat-gpt:make-crud "Model Name" "Model description"`
 
 - **Example:** php artisan chat-gpt:make-crud "Test" "title(string), description, is_active"

@@ -4,6 +4,7 @@ namespace Wizard85\ChatGPTAssist\Services;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Wizard85\ChatGPTAssist\Exceptions\ChatGPTNotAvailableException;
 use function PHPUnit\Framework\directoryExists;
 
 class ChatGPTService
@@ -42,7 +43,8 @@ class ChatGPTService
         if(isset($response['choices'][0]['text'])) {
             return $response['choices'][0]['text'];
         }
-        dd($response);
+
+        throw new ChatGPTNotAvailableException();
     }
 
     final public function makeMigration(string $model, string $description)
@@ -63,11 +65,11 @@ class ChatGPTService
         $requestString = 'Give me Laravel CRUD Controller code for model '.$model.' with fields '.$description .'.';
         $fileData = $this->makeCall($requestString);
         $fileName = $model.'Controller.php';
-        $myfile = fopen(base_path('app/Http/Controllers/'.$fileName), "w") or die("Unable to open file!");
+        $myfile = fopen(base_path(config('chatassist.locations.controllers').$fileName), "w") or die("Unable to open file!");
         fwrite($myfile, $fileData);
         fclose($myfile);
 
-        return base_path('app/Http/Controllers/'.$fileName);
+        return base_path(config('chatassist.locations.controllers').$fileName);
     }
 
     final public function makeCreateTemplate(string $model, string $description)
@@ -75,14 +77,14 @@ class ChatGPTService
         $requestString = 'Give me Laravel Create Blade template for model '.$model.' with fields '.$description .'.';
         $fileData = $this->makeCall($requestString);
         $fileName = 'create.blade.php';
-        if(!is_dir(base_path('resources/views/'.Str::lower(Str::plural($model))))){
-            mkdir(base_path('resources/views/' . Str::lower(Str::plural($model))));
+        if(!is_dir(base_path(config('chatassist.locations.views').Str::lower(Str::plural($model))))){
+            mkdir(base_path(config('chatassist.locations.views') . Str::lower(Str::plural($model))));
         }
-        $myfile = fopen(base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName), "w") or die("Unable to open file!");
+        $myfile = fopen(base_path(config('chatassist.locations.views').Str::lower(Str::plural($model)).'/'.$fileName), "w") or die("Unable to open file!");
         fwrite($myfile, $fileData);
         fclose($myfile);
 
-        return base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName);
+        return base_path(config('chatassist.locations.views').Str::lower(Str::plural($model)).'/'.$fileName);
     }
 
     final public function makeEditTemplate(string $model, string $description)
@@ -90,14 +92,14 @@ class ChatGPTService
         $requestString = 'Give me Laravel Edit Blade template for model '.$model.' with fields '.$description .'.';
         $fileData = $this->makeCall($requestString);
         $fileName = 'edit.blade.php';
-        if(!is_dir(base_path('resources/views/'.Str::lower(Str::plural($model))))){
+        if(!is_dir(base_path(config('chatassist.locations.views').Str::lower(Str::plural($model))))){
             mkdir(base_path('resources/views/' . Str::lower(Str::plural($model))));
         }
-        $myfile = fopen(base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName), "w") or die("Unable to open file!");
+        $myfile = fopen(base_path(config('chatassist.locations.views').Str::lower(Str::plural($model)).'/'.$fileName), "w") or die("Unable to open file!");
         fwrite($myfile, $fileData);
         fclose($myfile);
 
-        return base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName);
+        return base_path(config('chatassist.locations.views').Str::lower(Str::plural($model)).'/'.$fileName);
     }
 
     final public function makeIndexTemplate(string $model, string $description)
@@ -105,14 +107,14 @@ class ChatGPTService
         $requestString = 'Give me Laravel Index Blade template for model '.$model.' with fields '.$description .'.';
         $fileData = $this->makeCall($requestString);
         $fileName = 'index.blade.php';
-        if(!is_dir(base_path('resources/views/'.Str::lower(Str::plural($model))))){
+        if(!is_dir(base_path(config('chatassist.locations.views').Str::lower(Str::plural($model))))){
             mkdir(base_path('resources/views/' . Str::lower(Str::plural($model))));
         }
-        $myfile = fopen(base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName), "w") or die("Unable to open file!");
+        $myfile = fopen(base_path(config('chatassist.locations.views').Str::lower(Str::plural($model)).'/'.$fileName), "w") or die("Unable to open file!");
         fwrite($myfile, $fileData);
         fclose($myfile);
 
-        return base_path('resources/views/'.Str::lower(Str::plural($model)).'/'.$fileName);
+        return base_path(config('chatassist.locations.views').Str::lower(Str::plural($model)).'/'.$fileName);
     }
 
 
