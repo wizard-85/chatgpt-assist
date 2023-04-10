@@ -1,7 +1,6 @@
 ## Installation
-composer require wizard85/chatgpt-assist
-
-To publish config: `php artisan vendor:publish --provider="SWizard85\ChatGPTAssist\Providers\ChatGPTProvider"`
+- `composer require wizard85/chatgpt-assist`
+- To publish config: `php artisan vendor:publish --provider="SWizard85\ChatGPTAssist\Providers\ChatGPTProvider"`
 
 ## ENV Variables
 - CHAT_GPT_TOKEN=
