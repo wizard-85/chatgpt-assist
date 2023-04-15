@@ -1,7 +1,7 @@
 {
-    "version": "1.0.2",
+    "version": "1.1.0",
     "name": "wizard85/chatgpt-assist",
-    "description": "AI assist for CRUD",
+    "description": "AI assist",
     "type": "library",
     "autoload": {
         "psr-4": {
