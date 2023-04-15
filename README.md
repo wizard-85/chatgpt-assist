@@ -12,3 +12,17 @@
 `php artisan chat-gpt:make-crud "Model Name" "Model description"`
 
 - **Example:** php artisan chat-gpt:make-crud "Test" "title(string), description, is_active"
+
+
+## Api Calls
+Create New Service Instance: 
+
+`$service = new ChatGPTService();`
+
+Request New Description for Product:
+
+`$service->makeProductDescription('Lenovo Q27q-20', 'en');`
+
+Make Free Call to Chat GPT
+
+`$service->makeCall('Description for Lenovo Q27q-20');`
